@@ -23,14 +23,24 @@ public class VoterController {
         return new ResponseEntity<>(voterService.registerVoter(voter), HttpStatus.CREATED);
     }
 
-    @GetMapping("allVoters")
+    @GetMapping("/allVoters")
     public ResponseEntity<List<Voter>> getAllVoters() {
         return new ResponseEntity<>(voterService.getAllVoters(), HttpStatus.OK);
     }
 
-    @GetMapping("voter/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Voter> getVoterById(@PathVariable long id) {
         return new ResponseEntity<>(voterService.getVoterById(id), HttpStatus.OK);
     }
 
+    @PutMapping("/updateVoter/{id}")
+    public ResponseEntity<Voter> updateVoter(@PathVariable long id, @RequestBody Voter voter) {
+        return new ResponseEntity<>(voterService.updateVoter(id, voter), HttpStatus.OK);
+    }
+
+    @DeleteMapping("/deleteVoter/{id}")
+    public ResponseEntity<String> deleteVoter(@PathVariable long id) {
+        voterService.deleteVoter(id);
+        return new ResponseEntity<>("Voter with id "+id+" deleted successfully",HttpStatus.OK);
+    }
 }

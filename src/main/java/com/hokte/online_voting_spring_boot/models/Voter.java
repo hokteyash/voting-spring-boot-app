@@ -1,5 +1,6 @@
 package com.hokte.online_voting_spring_boot.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -26,5 +27,6 @@ public class Voter {
     // us table m (vote table m "voter" naam ki foreign key hogi jo Voter id ko
     // maintain karegi)
     @OneToOne(mappedBy = "voter", cascade = CascadeType.ALL)
+    @JsonIgnore
     private Vote vote;
 }

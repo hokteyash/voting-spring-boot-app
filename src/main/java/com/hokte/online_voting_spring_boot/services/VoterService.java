@@ -47,8 +47,12 @@ public class VoterService {
         if(voter == null){
             throw new ResourceNotFoundException("Voter with id "+id+" not found");
         }
-        voter.setEmail(updated.getEmail());
-        voter.setName(updated.getName());
+        if(updated.getEmail()==null && updated.getName()==null)
+            throw new RuntimeException("Please provide something to update");
+        if(updated.getEmail()!=null)
+            voter.setEmail(updated.getEmail());
+        if(updated.getName()!=null)
+            voter.setName(updated.getName());
         return voterRepo.save(voter);
     }
 
