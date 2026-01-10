@@ -9,4 +9,5 @@ import java.util.List;
 @Repository
 public interface CandidateRepo extends JpaRepository<Candidate, Long> {
     List<Candidate> findAllByOrderByVoteCountDesc();
+
 }
