@@ -20,7 +20,7 @@ public class CandidateService {
         return candidateRepo.findAll();
     }
 
-    public Candidate getCandidate(long id) {
+    public Candidate getCandidateById(long id) {
         Candidate candidate = candidateRepo.findById(id).orElse(null);
         if(candidate == null){
             throw new ResourceNotFoundException("Candidate with id " + id + " found");
