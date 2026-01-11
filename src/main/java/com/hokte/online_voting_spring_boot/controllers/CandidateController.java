@@ -1,5 +1,6 @@
 package com.hokte.online_voting_spring_boot.controllers;
 
+import com.hokte.online_voting_spring_boot.dto.CandidateUpdateDto;
 import com.hokte.online_voting_spring_boot.models.Candidate;
 import com.hokte.online_voting_spring_boot.services.CandidateService;
 import jakarta.validation.Valid;
@@ -34,7 +35,7 @@ public class CandidateController {
     }
 
     @PutMapping("/updateCandidate/{id}")
-    public ResponseEntity<Candidate> updateCandidate(@PathVariable long id, @RequestBody Candidate candidate){
+    public ResponseEntity<Candidate> updateCandidate(@PathVariable long id, @RequestBody @Valid CandidateUpdateDto candidate){
         return new ResponseEntity<>(candidateService.updateCandidate(id,candidate),HttpStatus.OK);
     }
 

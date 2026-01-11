@@ -1,5 +1,6 @@
 package com.hokte.online_voting_spring_boot.services;
 
+import com.hokte.online_voting_spring_boot.dto.CandidateUpdateDto;
 import com.hokte.online_voting_spring_boot.exception.ResourceNotFoundException;
 import com.hokte.online_voting_spring_boot.models.Candidate;
 import com.hokte.online_voting_spring_boot.models.Vote;
@@ -32,7 +33,7 @@ public class CandidateService {
         return candidateRepo.save(candidate);
     }
 
-    public Candidate updateCandidate(long id, Candidate updatedCandidate) {
+    public Candidate updateCandidate(long id, CandidateUpdateDto updatedCandidate) {
         Candidate candidate = candidateRepo.findById(id).orElse(null);
         if(candidate == null){
             throw new ResourceNotFoundException("Candidate with id " + id + "not found");
@@ -50,7 +51,7 @@ public class CandidateService {
     public void deleteCandidate(long id) {
         Candidate candidate = candidateRepo.findById(id).orElse(null);
         if(candidate == null){
-            throw new ResourceNotFoundException("Candidate with id " + id + "not found");
+            throw new ResourceNotFoundException("Candidate with id " + id + " not found");
         }
         List<Vote> votes = candidate.getVote();
         for (Vote vote : votes) {
