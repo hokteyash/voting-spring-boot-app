@@ -23,7 +23,7 @@ public class CandidateService {
     public Candidate getCandidateById(long id) {
         Candidate candidate = candidateRepo.findById(id).orElse(null);
         if(candidate == null){
-            throw new ResourceNotFoundException("Candidate with id " + id + " found");
+            throw new ResourceNotFoundException("Candidate with id " + id + " not found");
         }
         return candidate;
     }
