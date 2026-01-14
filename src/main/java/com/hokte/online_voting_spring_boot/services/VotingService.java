@@ -1,5 +1,7 @@
 package com.hokte.online_voting_spring_boot.services;
 
+import com.hokte.online_voting_spring_boot.dto.VoteRequestDto;
+import com.hokte.online_voting_spring_boot.models.Vote;
 import com.hokte.online_voting_spring_boot.repo.CandidateRepo;
 import com.hokte.online_voting_spring_boot.repo.VoteRepo;
 import com.hokte.online_voting_spring_boot.repo.VoterRepo;
@@ -15,5 +17,9 @@ public class VotingService {
         this.voteRepo = voteRepo;
         this.candidateRepo = candidateRepo;
         this.voterRepo = voterRepo;
+    }
+
+    public Vote castVote(VoteRequestDto voteRequestDto) {
+        return new Vote();
     }
 }
