@@ -9,7 +9,10 @@ import com.hokte.online_voting_spring_boot.models.Voter;
 import com.hokte.online_voting_spring_boot.repo.CandidateRepo;
 import com.hokte.online_voting_spring_boot.repo.VoteRepo;
 import com.hokte.online_voting_spring_boot.repo.VoterRepo;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class VotingService {
@@ -23,6 +26,7 @@ public class VotingService {
         this.voterRepo = voterRepo;
     }
 
+    @Transactional
     public Vote castVote(Long voterId, Long candidateId) {
         if(!voterRepo.existsById(voterId)){
             throw new ResourceNotFoundException("Voter with id " + voterId + " not found");
@@ -38,11 +42,16 @@ public class VotingService {
         Vote vote = new Vote();
         vote.setCandidate(candidate);
         vote.setVoter(voter);
-        voteRepo.save(vote);
+        // voteRepo.save(vote);
         candidate.setVoteCount(candidate.getVoteCount() + 1);
         candidateRepo.save(candidate);
         voter.setHasVoted(true);
+        voter.setVote(vote);
         voterRepo.save(voter);
         return vote;
+    }
+
+    public List<Vote> getAllVoters(){
+        return voteRepo.findAll();
     }
 }

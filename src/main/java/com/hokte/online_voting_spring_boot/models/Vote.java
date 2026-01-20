@@ -3,10 +3,13 @@ package com.hokte.online_voting_spring_boot.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
 
 @Entity
-@Data
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Vote {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
