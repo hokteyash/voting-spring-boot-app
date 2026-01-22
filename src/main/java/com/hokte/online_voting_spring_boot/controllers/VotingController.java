@@ -22,8 +22,8 @@ public class VotingController {
     }
 
     @GetMapping("/allVotes")
-    public List<Vote> getAllVoters(){
-        return votingService.getAllVoters();
+    public ResponseEntity<List<Vote>> getAllVoters(){
+        return  new ResponseEntity<>(votingService.getAllVotes(),HttpStatus.OK);
     }
 
     @PostMapping("/castVote")

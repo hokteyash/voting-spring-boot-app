@@ -35,7 +35,7 @@ public class VotingService {
             throw new ResourceNotFoundException("Candidate with id " + candidateId + " not found");
         }
         Voter voter = voterRepo.findById(voterId).get();
-        if(voter.isHasVoted()){
+        if(voter.getHasVoted()){
             throw new VoteNotAllowedException("Voter with id " + voterId + " is already voted");
         }
         Candidate candidate = candidateRepo.findById(candidateId).get();
@@ -51,7 +51,7 @@ public class VotingService {
         return vote;
     }
 
-    public List<Vote> getAllVoters(){
+    public List<Vote> getAllVotes(){
         return voteRepo.findAll();
     }
 }

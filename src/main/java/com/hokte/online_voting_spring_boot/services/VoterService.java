@@ -27,6 +27,7 @@ public class VoterService {
         if(voterRepo.existsByEmail(voter.getEmail())){
             throw new DuplicateResourceException("Voter already registered with "+voter.getEmail()+" email address");
         }
+        voter.setHasVoted(false);
         return voterRepo.save(voter);
     }
 

@@ -24,7 +24,8 @@ public class Voter {
     @Email(message = "Invalid email format")
     private String email;
 
-    private boolean hasVoted = false;
+    @Column(nullable = false)
+    private Boolean hasVoted = false;
 
     // mappedBy m value ye bta rhi h ki related table m voter naam se foreign key bnegi
     // us table m (vote table m "voter" naam ki foreign key hogi jo Voter id ko
